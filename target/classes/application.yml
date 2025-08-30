@@ -2,10 +2,11 @@ spring:
   application:
     name: quantcrux-backend
   datasource:
-    url: jdbc:postgresql://localhost:5432/quantcrux
-    username: quant_user
-    password: quant_pass
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
       ddl-auto: validate
@@ -30,7 +31,7 @@ spring:
             client-secret: ${GITHUB_CLIENT_SECRET:}
 
 server:
-  port: 8080
+  port: ${PORT:8080}
   servlet:
     context-path: /api
 
@@ -40,7 +41,7 @@ jwt:
   refresh-expiration: 2592000000 # 30 days
 
 cors:
-  allowed-origins: http://localhost:5173,http://localhost:3000
+  allowed-origins: "*"
   allowed-methods: GET,POST,PUT,DELETE,OPTIONS
   allowed-headers: "*"
   allow-credentials: true
